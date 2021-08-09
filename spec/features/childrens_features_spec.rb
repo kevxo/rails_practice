@@ -16,5 +16,20 @@ describe 'Children' do
         end
       end
     end
+
+    describe 'When I visit the child page' do
+      it 'should see the child with the ID and its attributes' do
+        child1 = create(:child)
+
+        visit "/childrens/#{child1.id}"
+
+        expect(page).to have_content("Child: #{child1.id}")
+
+        within '.child-attributes' do
+          expect(page).to have_content("Name: #{child1.name}")
+          expect(page).to have_content("Age: #{child1.age}")
+        end
+      end
+    end
   end
 end
