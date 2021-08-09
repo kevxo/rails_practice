@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   resources :parents, only: %i[index show]
   resources :childrens, only: %i[index show]
+
+  get '/parents/:parent_id/childrens', to: 'parent_child#index'
 end

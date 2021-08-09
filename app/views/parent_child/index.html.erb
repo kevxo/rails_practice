@@ -1,0 +1,10 @@
+<div>
+  <h1>Parents Kids</h1>
+
+   <% @kids.each do |child| %>
+   <ul class="child-<%= child.id %>">
+      <li>Name: <%= child.name %></li>
+      <li>Age: <%= child.age %></li>
+   </ul>
+  <% end %>
+</div>
