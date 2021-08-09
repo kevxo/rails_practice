@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :parent do
-    name { "MyString" }
-    age { 1 }
-    married { false }
+    name { Faker::Name.name }
+    age { 35 }
+    married { true }
   end
 end

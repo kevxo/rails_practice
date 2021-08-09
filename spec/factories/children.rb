@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :child do
-    name { "MyString" }
-    age { 1 }
-    parent { nil }
+    name { Fake::Name.name }
+    age { 2 }
+    parent
   end
 end

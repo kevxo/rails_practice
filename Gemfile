@@ -32,13 +32,14 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'launchy'
   gem 'pry'
   gem 'rspec-rails'
   gem 'simplecov'
 end
 
 group :test do
-   gem 'shoulda-matchers'
+  gem 'shoulda-matchers'
 end
 
 group :development do
