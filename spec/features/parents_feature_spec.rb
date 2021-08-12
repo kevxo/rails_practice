@@ -19,6 +19,21 @@ describe 'Parent' do
         expect(page).to have_content(parent4.name)
         expect(page).to have_content(parent5.name)
       end
+
+      it 'should see records that were created from first to last with creation date' do
+        parent1 = create(:parent)
+        parent2 = create(:parent)
+        parent3 = create(:parent)
+        parent4 = create(:parent)
+        parent5 = create(:parent)
+
+        visit '/parents'
+        expect(page).to have_content(Time.parse(parent1.created_at.to_s.gsub('UTC', '')))
+        expect(page).to have_content(Time.parse(parent2.created_at.to_s.gsub('UTC', '')))
+        expect(page).to have_content(Time.parse(parent3.created_at.to_s.gsub('UTC', '')))
+        expect(page).to have_content(Time.parse(parent4.created_at.to_s.gsub('UTC', '')))
+        expect(page).to have_content(Time.parse(parent5.created_at.to_s.gsub('UTC', '')))
+      end
     end
 
     describe 'When I visit Parent show page' do

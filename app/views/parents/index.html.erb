@@ -3,7 +3,7 @@
 
   <% @parents.each do |parent| %>
     <ul>
-      <li><%= parent.name %></li>
+      <li><%= parent.name %> - <%= Time.parse(parent.created_at.to_s.gsub('UTC', '')) %></li>
     </ul>
   <% end %>
 </div>
