@@ -63,5 +63,21 @@ describe 'Parent' do
         end
       end
     end
+
+    describe 'When I visit every page' do
+      it 'should have a link to parents index' do
+        visit '/childrens'
+
+        expect(page).to have_link('Parents')
+
+        click_link 'Parents'
+
+        expect(current_path).to eq('/parents')
+
+        visit '/parents'
+
+        expect(page).to have_link('Parents')
+      end
+    end
   end
 end
