@@ -1,6 +1,6 @@
 class ParentsController < ApplicationController
   def index
-    @parents = Parent.all
+    @parents = Parent.order(:created_at)
   end
 
   def show
