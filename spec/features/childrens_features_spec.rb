@@ -31,5 +31,21 @@ describe 'Children' do
         end
       end
     end
+
+    describe 'When I visit every page on the site' do
+      it 'should see the link to the index page' do
+        visit '/parents'
+
+        expect(page).to have_link('Children')
+
+        click_link 'Children'
+
+        expect(current_path).to eq('/childrens')
+
+        visit '/childrens'
+
+        expect(page).to have_link('Children')
+      end
+    end
   end
 end

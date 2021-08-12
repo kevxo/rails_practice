@@ -22,5 +22,20 @@ describe 'Parent Child' do
         end
       end
     end
+
+    describe 'When I visit ever page' do
+      it 'should see a link to the parent child index page' do
+        parent = create(:parent)
+
+
+        visit "/parents/#{parent.id}"
+
+        expect(page).to have_link('Parents Kids')
+
+        click_link 'Parents Kids'
+
+        expect(current_path).to eq("/parents/#{parent.id}/childrens")
+      end
+    end
   end
 end
