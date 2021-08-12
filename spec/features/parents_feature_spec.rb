@@ -50,6 +50,18 @@ describe 'Parent' do
           expect(page).to have_content("Married: #{parent.married}")
         end
       end
+
+      it 'should have the parents children count' do
+        parent = create(:parent)
+        create(:child, parent_id: parent.id)
+        create(:child, parent_id: parent.id)
+
+        visit "/parents/#{parent.id}"
+
+        within '.parent-attrs' do
+          expect(page).to have_content("Children Count: #{parent.children.length}")
+        end
+      end
     end
   end
 end
