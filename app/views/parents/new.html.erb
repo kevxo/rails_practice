@@ -1,0 +1,14 @@
+<div>
+  <%= form_with url: '/parents', method: :post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+
+    <%= f.label :married %>
+    <%= f.text_field :married %>
+
+    <%= f.submit :CreateParent  %>
+  <% end %>
+</div>

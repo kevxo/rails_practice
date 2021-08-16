@@ -1,6 +1,6 @@
 <div>
   <h1>Parents</h1>
-
+  <%= link_to 'New Parent', '/parents/new' %>
   <% @parents.each do |parent| %>
     <ul>
       <li><%= parent.name %> - <%= Time.parse(parent.created_at.to_s.gsub('UTC', '')) %></li>

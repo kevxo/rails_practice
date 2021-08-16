@@ -34,6 +34,16 @@ describe 'Parent' do
         expect(page).to have_content(Time.parse(parent4.created_at.to_s.gsub('UTC', '')))
         expect(page).to have_content(Time.parse(parent5.created_at.to_s.gsub('UTC', '')))
       end
+
+      it 'should see a link to create a new parent' do
+        visit '/parents'
+
+        expect(page).to have_link('New Parent')
+
+        click_link 'New Parent'
+
+        expect(current_path).to eq('/parents/new')
+      end
     end
 
     describe 'When I visit Parent show page' do
@@ -77,6 +87,21 @@ describe 'Parent' do
         visit '/parents'
 
         expect(page).to have_link('Parents')
+      end
+    end
+
+    describe 'When I visit the new page' do
+      it 'should create a new parent' do
+        visit '/parents/new'
+
+        fill_in :name, with: 'Kevin Cuadros'
+        fill_in :age, with: 30
+        fill_in :married, with: true
+
+        click_button 'CreateParent'
+
+        expect(current_path).to eq('/parents')
+        save_and_open_page
       end
     end
   end
