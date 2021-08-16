@@ -10,4 +10,6 @@
       <li>Children Count: <%= @parent.children.length %></li>
     </ul>
   </div>
+
+  <%= link_to 'Update Parent', "/parents/#{@parent.id}/edit"%>
 </div>
