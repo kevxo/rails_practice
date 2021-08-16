@@ -72,6 +72,18 @@ describe 'Parent' do
           expect(page).to have_content("Children Count: #{parent.children.length}")
         end
       end
+
+      it 'should have a link to update a parent' do
+        parent = create(:parent)
+
+        visit "/parents/#{parent.id}"
+
+        expect(page).to have_link('Update Parent')
+
+        click_link 'Update Parent'
+
+        expect(current_path).to eq("/parents/#{parent.id}/edit")
+      end
     end
 
     describe 'When I visit every page' do
@@ -101,7 +113,6 @@ describe 'Parent' do
         click_button 'CreateParent'
 
         expect(current_path).to eq('/parents')
-        save_and_open_page
       end
     end
   end

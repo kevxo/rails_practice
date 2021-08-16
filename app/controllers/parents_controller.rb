@@ -17,6 +17,10 @@ class ParentsController < ApplicationController
     @parent = Parent.find(params[:id])
   end
 
+  def edit
+
+  end
+
   private
 
   def parent_params
