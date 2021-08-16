@@ -1,0 +1,14 @@
+<div>
+  <%= form_with url: "/parents/#{@parent.id}", method: :patch do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: @parent.name %>
+
+    <%= f.label :age %>
+    <%= f.text_field :age, placeholder: @parent.age %>
+
+    <%= f.label :married %>
+    <%= f.text_field :married, placeholder: @parent.married %>
+
+    <%= f.submit :Submit %>
+  <% end %>
+</div>

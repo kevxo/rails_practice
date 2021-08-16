@@ -10,7 +10,7 @@ class ParentsController < ApplicationController
     parent = Parent.new(parent_params)
     parent.save
 
-    redirect_to('/parents')
+    redirect_to(parents_path)
   end
 
   def show
@@ -18,7 +18,16 @@ class ParentsController < ApplicationController
   end
 
   def edit
+    @parent = Parent.find(params[:id])
+  end
 
+  def update
+    parent = Parent.find(params[:id])
+
+    parent.update(parent_params)
+    parent.save
+
+    redirect_to(parent_path)
   end
 
   private

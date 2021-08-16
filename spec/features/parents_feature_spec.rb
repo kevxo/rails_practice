@@ -115,5 +115,21 @@ describe 'Parent' do
         expect(current_path).to eq('/parents')
       end
     end
+
+    describe 'When I visit the edit page' do
+      it 'should be form where I can update current parent attributes' do
+        parent = create(:parent)
+
+        visit "/parents/#{parent.id}/edit"
+
+        fill_in :name, with: 'Kevin Cuadros'
+        fill_in :age, with: 40
+        fill_in :married, with: false
+
+        click_button 'Submit'
+
+        expect(current_path).to eq("/parents/#{parent.id}")
+      end
+    end
   end
 end
