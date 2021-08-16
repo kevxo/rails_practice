@@ -89,5 +89,20 @@ describe 'Parent' do
         expect(page).to have_link('Parents')
       end
     end
+
+    describe 'When I visit the new page' do
+      it 'should create a new parent' do
+        visit '/parents/new'
+
+        fill_in :name, with: 'Kevin Cuadros'
+        fill_in :age, with: 30
+        fill_in :married, with: true
+
+        click_button 'CreateParent'
+
+        expect(current_path).to eq('/parents')
+        save_and_open_page
+      end
+    end
   end
 end
