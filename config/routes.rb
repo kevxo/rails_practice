@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :childrens, only: %i[index show]
 
   get '/parents/:parent_id/childrens', to: 'parent_child#index'
+  get '/parents/:parent_id/childrens/new', to: 'parent_child#new'
+  post '/parents/:parent_id/childrens', to: 'parent_child#create'
+
 end
