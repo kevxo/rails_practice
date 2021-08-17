@@ -21,6 +21,18 @@ describe 'Parent Child' do
           expect(page).to_not have_content(child3.age)
         end
       end
+
+      it 'should see a link to add a adoptable child' do
+        parent = create(:parent)
+
+        visit "/parents/#{parent.id}/childrens"
+
+        expect(page).to have_link('Create Child')
+
+        click_link 'Create Child'
+
+        expect(current_path).to eq("/parents/#{parent.id}/childrens/new")
+      end
     end
 
     describe 'When I visit ever page' do
@@ -33,6 +45,21 @@ describe 'Parent Child' do
         expect(page).to have_link('Parents Kids')
 
         click_link 'Parents Kids'
+
+        expect(current_path).to eq("/parents/#{parent.id}/childrens")
+      end
+    end
+
+    describe 'When I visit the create child page' do
+      it 'should be a form where I can fill out attributes for a child' do\
+        parent = create(:parent)
+
+        visit "/parents/#{parent.id}/childrens/new"
+
+        fill_in :name, with: 'Johnny Cash'
+        fill_in :age, with: 10
+
+        click_button 'Create Child'
 
         expect(current_path).to eq("/parents/#{parent.id}/childrens")
       end
