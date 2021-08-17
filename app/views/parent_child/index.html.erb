@@ -1,6 +1,7 @@
 <div>
   <h1>Parents Kids</h1>
 
+  <%= link_to 'Create Child', "/parents/#{params[:parent_id]}/childrens/new" %>
    <% @kids.each do |child| %>
    <ul class="child-<%= child.id %>">
       <li>Name: <%= child.name %></li>
