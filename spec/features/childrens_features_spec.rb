@@ -30,6 +30,18 @@ describe 'Children' do
           expect(page).to have_content("Age: #{child1.age}")
         end
       end
+
+      it 'should have a link to update the child attributes' do
+        child1 = create(:child)
+
+        visit "/childrens/#{child1.id}"
+
+        expect(page).to have_link('Update Child')
+
+        click_link 'Update Child'
+
+        expect(current_path).to eq("/childrens/#{child1.id}/edit")
+      end
     end
 
     describe 'When I visit every page on the site' do
@@ -45,6 +57,21 @@ describe 'Children' do
         visit '/childrens'
 
         expect(page).to have_link('Children')
+      end
+    end
+
+    describe 'When I visit the edit page for child' do
+      it 'should able to update a childs attributes' do
+        child = create(:child)
+
+        visit "/childrens/#{child.id}/edit"
+
+        fill_in :name, with: 'John Cena'
+        fill_in :age, with: 15
+
+        click_button 'Update Child'
+
+        expect(current_path).to eq("/childrens/#{child.id}")
       end
     end
   end
