@@ -1,6 +1,6 @@
 class ChildrensController < ApplicationController
   def index
-    @kids = Child.all
+    @kids = Child.where(is_adopted: true)
   end
 
   def show

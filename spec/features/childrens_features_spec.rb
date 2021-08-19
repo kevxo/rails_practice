@@ -15,6 +15,22 @@ describe 'Children' do
           expect(page).to have_content(child1.age)
         end
       end
+
+      it 'should only show children with true boolean' do
+        child1 = create(:child)
+        child2 = create(:child)
+        child3 = create(:child)
+        child4 = create(:child, is_adopted: false)
+        child5 = create(:child, is_adopted: false)
+
+        visit '/childrens'
+
+        expect(page).to have_content(child1.name)
+        expect(page).to have_content(child2.name)
+        expect(page).to have_content(child3.name)
+        expect(page).to_not have_content(child4.name)
+        expect(page).to_not have_content(child5.name)
+      end
     end
 
     describe 'When I visit the child page' do
