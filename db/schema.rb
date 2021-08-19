@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_214215) do
+ActiveRecord::Schema.define(version: 2021_08_19_182216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_214215) do
     t.bigint "parent_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_adopted", default: false
     t.index ["parent_id"], name: "index_children_on_parent_id"
   end
 
