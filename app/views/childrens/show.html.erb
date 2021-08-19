@@ -1,5 +1,6 @@
 <div>
   <h1>Child: <%= @kid.id %></h1>
+  <%= link_to "Update Child", "/childrens/#{@kid.id}/edit" %>
 
   <div>
     <ul class="child-attributes">
