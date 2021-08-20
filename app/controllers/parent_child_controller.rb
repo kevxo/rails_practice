@@ -1,6 +1,10 @@
 class ParentChildController < ApplicationController
   def index
-    @kids = Child.where(parent_id: params[:parent_id])
+    @kids = if params[:sort]
+              Child.order(params[:sort])
+            else
+              Child.where(parent_id: params[:parent_id])
+            end
   end
 
   def new
