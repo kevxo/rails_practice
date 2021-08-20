@@ -31,6 +31,23 @@ describe 'Children' do
         expect(page).to_not have_content(child4.name)
         expect(page).to_not have_content(child5.name)
       end
+
+      it 'should have a link next to each child to edit' do
+        child1 = create(:child)
+        create(:child)
+        create(:child)
+
+        visit '/childrens'
+
+        within ".child-#{child1.id}" do
+          expect(page).to have_link('Edit')
+          save_and_open_page
+
+          click_link 'Edit'
+        end
+
+        expect(current_path).to eq("/childrens/#{child1.id}/edit")
+      end
     end
 
     describe 'When I visit the child page' do
