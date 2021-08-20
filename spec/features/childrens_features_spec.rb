@@ -41,7 +41,6 @@ describe 'Children' do
 
         within ".child-#{child1.id}" do
           expect(page).to have_link('Edit')
-          save_and_open_page
 
           click_link 'Edit'
         end
