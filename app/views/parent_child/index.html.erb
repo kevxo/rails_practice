@@ -6,7 +6,7 @@
    <% @kids.each do |child| %>
    <section class="kid">
     <ul class="child-<%= child.id %>">
-        <li>Name: <%= child.name %></li>
+        <li>Name: <%= child.name %> - <%= link_to 'Edit', "/childrens/#{child.id}/edit" %></li>
         <li>Age: <%= child.age %></li>
     </ul>
     </section>
