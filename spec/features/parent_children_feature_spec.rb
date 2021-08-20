@@ -33,6 +33,42 @@ describe 'Parent Child' do
 
         expect(current_path).to eq("/parents/#{parent.id}/childrens/new")
       end
+
+      it 'should see a link to sort the children in alphabetical order' do
+        parent = create(:parent)
+
+        child1 = create(:child, name: 'Lola Zu', parent_id: parent.id)
+        child2 = create(:child, name: 'Jack Spears', parent_id: parent.id)
+        child3 = create(:child, name: 'Alex Smith', parent_id: parent.id)
+        child4 = create(:child, name: 'John Cena', parent_id: parent.id)
+        child5 = create(:child, name: 'Linda Scott', parent_id: parent.id)
+
+        visit "/parents/#{parent.id}/childrens"
+
+        expect(page).to have_link('Sort Kids')
+
+        click_link 'Sort Kids'
+
+        within all('.kid')[0] do
+          expect(page).to have_content(child3.name)
+        end
+
+        within all('.kid')[1] do
+          expect(page).to have_content(child2.name)
+        end
+
+        within all('.kid')[2] do
+          expect(page).to have_content(child4.name)
+        end
+
+        within all('.kid')[3] do
+          expect(page).to have_content(child5.name)
+        end
+
+        within all('.kid')[4] do
+          expect(page).to have_content(child1.name)
+        end
+      end
     end
 
     describe 'When I visit ever page' do
