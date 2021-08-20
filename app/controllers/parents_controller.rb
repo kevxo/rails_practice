@@ -30,6 +30,13 @@ class ParentsController < ApplicationController
     redirect_to(parent_path)
   end
 
+  def destroy
+    parent = Parent.find(params[:id])
+    parent.destroy
+
+    redirect_to(parents_path)
+  end
+
   private
 
   def parent_params
