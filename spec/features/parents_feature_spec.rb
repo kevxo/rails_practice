@@ -101,6 +101,22 @@ describe 'Parent' do
 
         expect(current_path).to eq("/parents/#{parent.id}/edit")
       end
+
+      it 'should see a link to delete parent and its kids' do
+        parent = create(:parent)
+
+        create(:child, parent_id: parent.id)
+        create(:child, parent_id: parent.id)
+        create(:child, parent_id: parent.id)
+
+        visit "/parents/#{parent.id}"
+
+        expect(page).to have_link('Delete Parent')
+
+        click_link 'Delete Parent'
+
+        expect(current_path).to eq('/parents')
+      end
     end
 
     describe 'When I visit every page' do
