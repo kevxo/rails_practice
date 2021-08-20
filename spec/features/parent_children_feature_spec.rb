@@ -69,6 +69,24 @@ describe 'Parent Child' do
           expect(page).to have_content(child1.name)
         end
       end
+
+      it 'should see a link to edit each child' do
+        parent = create(:parent)
+
+        child1 = create(:child, parent_id: parent.id)
+        create(:child, parent_id: parent.id)
+        create(:child, parent_id: parent.id)
+
+        visit "/parents/#{parent.id}/childrens"
+
+        within ".child-#{child1.id}" do
+          expect(page).to have_link('Edit')
+
+          click_link 'Edit'
+        end
+
+        expect(current_path).to eq("/childrens/#{child1.id}/edit")
+      end
     end
 
     describe 'When I visit ever page' do
