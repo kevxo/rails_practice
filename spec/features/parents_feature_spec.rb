@@ -44,6 +44,23 @@ describe 'Parent' do
 
         expect(current_path).to eq('/parents/new')
       end
+
+      it 'should see a link next to each parent to edit.' do
+        parent1 = create(:parent)
+        create(:parent)
+        create(:parent)
+        create(:parent)
+        create(:parent)
+
+        visit '/parents'
+
+        within ".parent-#{parent1.id}" do
+          expect(page).to have_link('Edit')
+          click_link 'Edit'
+        end
+
+        expect(current_path).to eq("/parents/#{parent1.id}/edit")
+      end
     end
 
     describe 'When I visit Parent show page' do
