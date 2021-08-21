@@ -61,6 +61,26 @@ describe 'Parent' do
 
         expect(current_path).to eq("/parents/#{parent1.id}/edit")
       end
+
+      it 'should be able to delete parent form parents index page' do
+        parent1 = create(:parent)
+        create(:parent)
+        create(:parent)
+        create(:parent)
+        create(:parent)
+
+        visit '/parents'
+
+        within ".parent-#{parent1.id}" do
+          expect(page).to have_link('Delete')
+
+          click_link 'Delete'
+        end
+
+        expect(current_path).to eq('/parents')
+
+        expect(page).to_not have_content(parent1.name)
+      end
     end
 
     describe 'When I visit Parent show page' do
