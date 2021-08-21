@@ -3,6 +3,14 @@
   <%= link_to 'Sort Kids', "/parents/#{params[:parent_id]}/childrens?sort=name" %>
 
   <%= link_to 'Create Child', "/parents/#{params[:parent_id]}/childrens/new" %>
+
+  <%= form_with url: "/parents/#{params[:parent_id]}/childrens", method: :get do |f| %>
+    <%= f.label :filter_age %>
+    <%= f.number_field :filter_age, in: 1..100 %>
+
+    <%= f.submit "Submit" %>
+  <% end %>
+
    <% @kids.each do |child| %>
    <section class="kid">
     <ul class="child-<%= child.id %>">
