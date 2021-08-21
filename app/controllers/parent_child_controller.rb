@@ -2,6 +2,8 @@ class ParentChildController < ApplicationController
   def index
     @kids = if params[:sort]
               Child.order(params[:sort])
+            elsif params[:filter_age]
+              Child.where('age > ?', params[:filter_age])
             else
               Child.where(parent_id: params[:parent_id])
             end

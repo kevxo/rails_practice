@@ -87,6 +87,26 @@ describe 'Parent Child' do
 
         expect(current_path).to eq("/childrens/#{child1.id}/edit")
       end
+
+      it 'should see a search bar where I can input a number and filter records' do
+        parent = create(:parent)
+
+        child1 = create(:child, parent_id: parent.id, age: 10)
+        child2 = create(:child, parent_id: parent.id, age: 12)
+        child3 = create(:child, parent_id: parent.id, age: 5)
+
+        visit "/parents/#{parent.id}/childrens"
+
+        fill_in :age, with: 7
+
+        click_button 'Submit'
+
+        expect(current_path).to eq("/parents/#{parent.id}/childrens")
+
+        expect(page).to have_content(child1.name)
+        expect(page).to have_content(child2.name)
+        expect(page).to_not have_content(child3.name)
+      end
     end
 
     describe 'When I visit ever page' do
