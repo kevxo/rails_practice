@@ -8,4 +8,6 @@
       <li>Age: <%= @kid.age %></li>
     </ul>
   </div>
+
+  <%= link_to 'Delete Child', "/childrens/#{@kid.id}", method: :delete %>
 </div>
