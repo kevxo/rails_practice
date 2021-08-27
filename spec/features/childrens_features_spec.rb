@@ -47,6 +47,24 @@ describe 'Children' do
 
         expect(current_path).to eq("/childrens/#{child1.id}/edit")
       end
+
+      it 'should see a text box to filter results by key word' do
+        create(:child, name: 'Joey Lu')
+        result = create(:child, name: 'John Cena')
+        create(:child, name: 'Joseph Mak')
+
+        visit childrens_path
+
+        within '.key-word-search' do
+          expect(page).to have_button('Search')
+
+          fill_in :keyword, with: 'John'
+          click_button 'Search'
+        end
+
+        expect(current_path).to eq(childrens_path)
+        expect(page).to have_content(result.name)
+      end
     end
 
     describe 'When I visit the child page' do
