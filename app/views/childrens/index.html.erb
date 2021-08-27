@@ -1,5 +1,14 @@
 <div>
   <h1>Children</h1>
+  <div class="key-word-search">
+    <%= form_with url: childrens_path, method: :get do |f| %>
+      <%= f.label :keyword %>
+      <%= f.text_field :keyword %>
+
+      <%= f.submit "Search" %>
+    <% end %>
+
+  </div>
 
   <% @kids.each do |child| %>
   -------------------------------------

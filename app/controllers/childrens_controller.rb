@@ -1,6 +1,10 @@
 class ChildrensController < ApplicationController
   def index
-    @kids = Child.where(is_adopted: true)
+    @kids = if params[:keyword]
+              Child.where('name LIKE ?', "%#{params[:keyword]}%")
+            else
+              Child.where(is_adopted: true)
+            end
   end
 
   def show

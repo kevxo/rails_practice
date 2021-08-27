@@ -1,6 +1,15 @@
 <div>
   <h1>Parents</h1>
   <%= link_to 'New Parent', '/parents/new' %>
+  <div class="key-word-search">
+    <%= form_with url: parents_path, method: :get do |f| %>
+      <%= f.label :keyword %>
+      <%= f.text_field :keyword %>
+
+      <%= f.submit "Search" %>
+    <% end %>
+
+  </div>
   <% @parents.each do |parent| %>
     <section class="parent-<%= parent.id %>">
       <ul>
