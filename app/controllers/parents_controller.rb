@@ -1,10 +1,13 @@
 class ParentsController < ApplicationController
   def index
-    @parents = Parent.order(:created_at)
+    @parents = if params[:keyword]
+                 Parent.where('name LIKE ?', "%#{params[:keyword]}%")
+               else
+                 Parent.order(:created_at)
+               end
   end
 
-  def new
-  end
+  def new; end
 
   def create
     parent = Parent.new(parent_params)

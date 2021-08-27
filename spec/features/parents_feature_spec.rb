@@ -81,6 +81,24 @@ describe 'Parent' do
 
         expect(page).to_not have_content(parent1.name)
       end
+
+      it 'should see a text box to filter results by key word' do
+        create(:parent, name: 'Joey Lu')
+        result = create(:parent, name: 'John Cena')
+        create(:parent, name: 'Joseph Mak')
+
+        visit parents_path
+
+        within '.key-word-search' do
+          expect(page).to have_button('Search')
+
+          fill_in :keyword, with: 'John'
+          click_button 'Search'
+        end
+
+        expect(current_path).to eq(parents_path)
+        expect(page).to have_content(result.name)
+      end
     end
 
     describe 'When I visit Parent show page' do
